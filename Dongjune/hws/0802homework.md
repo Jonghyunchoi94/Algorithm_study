@@ -25,6 +25,8 @@ print(result)
 
 
 
+
+
 ## 2. 덩치 (BOJ 7568번) [DFS, 구현]
 
 ```python
@@ -48,6 +50,8 @@ for i in man:
 
 
 
+
+
 ## 3. 퇴사 (BOJ 14501번) [BFS, 다프] (?)
 
 ```python
@@ -55,10 +59,14 @@ for i in man:
 
 
 
+
+
 ## 4. 스타트와 링크 (BOJ 14889번) [BFS, 백트래킹] (?)
 
 ```python
 ```
+
+
 
 
 
@@ -87,6 +95,8 @@ map : (함수, iterable) [05_data_structure I] [p.239]
 zip : iterable & 동일한 개수로 이루어진 자료형을 묶어줌 [05_data_structure I] [P.246]
 ''''''
 ```
+
+
 
 
 
@@ -121,26 +131,75 @@ def solution(n):
 
 
 
+
+
 ## 7. 삼각 달팽이 (프로그래머스 :  월간 코드 챌린지 시즌 1) (?)
 
 ```python
+
 ```
+
+
 
 
 
 ## 8. 재귀 호출과 BFS에 대해 탐구하고 설명하시오
 
-```python
-1. 재귀 호출(함수)
-- 자기 자신을 다시 호출하는 함수, 조건이 변경될 명령문(종료 조건 / base case)이 없을 시 끊임없이 자기자신을 호출하는 행위를 반복한다. (ex. 팩토리얼 계산, 피보나치 수열)
+### 0) Stack
 
-- 최대 재귀 깊이 존재 : 반복하는 횟수가 1000번이 넘어가게되면 호출하지 않고 종료
-- 반복문보다 코드가 더 직관적이고 이해하기 쉬운 경우가 많음
+- 박스 쌓기
+- 선입후출, 후입선출 (append, pop)
 
-2. BFS
-- 너비 우선 탐색 : 가장 가까운 노드부터 탐색하는 알고리즘, 모두 탐색
-- 자료구조 큐(Queue) 이용 : 선입선출 구조
-```
+
+
+### 1) Queue
+
+- 선입선출 : 후입선출이랑 반대 개념 (popleft)
+- form collections import **deque** : 스택 + 큐 장점 이용
+
+
+
+### 2) 재귀함수
+
+- Stack 구조 이용 (DFS)
+
+- 종료 조건 명시 필수
+
+- 반복문에 비해 더 간결
+
+  ```python
+  # 반복문
+  def factorial_iterative(n):
+      result = 1
+      for i in range(1, n + 1):
+          result *= i
+      return result
+  
+  # 재귀
+  def factorial_recursive(n):
+      if n <= 1:
+      	return 1
+      return n * factorial_recursive(n - 1)
+  ```
+  
+
+
+
+### 3) DFS (Depth-First-Search)
+
+- 깊이 우선 탐색 알고리즘 (멀리 있는 노드 우선 탐색)
+- 인접 행렬 / 인접 리스트
+- Stack 구조에 기초
+- 재귀 함수 이용
+
+
+
+### 4) BFS (Breadth First Search)
+
+- 너비 우선 탐색 알고리즘 (가까이 있는 노드 우선 탐색)
+- Queue 구조에 기초
+- Queue 자료구조 이용
+- BFS 구현이 DFS 보다 조금 더 빠름
 
 
 
@@ -152,12 +211,6 @@ def solution(n):
 
 ```python
 ```
-
-
-
-
-
-
 
 
 
