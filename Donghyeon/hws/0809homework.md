@@ -6,19 +6,19 @@
 
 ```python
 def solution(s):
-    answer = [0,0]
+    answer = [0,0] # 반복 횟수와 변환된 0의 개수를 넣으려고
     z_cnt = 0
 
     while s != '1': # 이진 변환을 위해 1이 나올 때까지 반복
-        len_s = 0     
+        len_s = 0  # 0제거 후 s의 길이를 넣기 위해   
         
         for i in s:
-            if i == '0':
-                z_cnt += 1
+            if i == '0': 		# 0의 개수를 세기 위함
+                z_cnt += 1	
         
-        s = s.replace('0', "")
-        len_s += len(s)
-        s = str(format(len_s, 'b'))
+        s = s.replace('0', "") # 0을 빼준다.
+        len_s += len(s)			# 0 제거 후 길이를 넣는다.
+        s = str(format(len_s, 'b')) # 0 제거 후 길이를 2진수로 변환한다.
 
         answer[0] += 1
 
@@ -34,17 +34,40 @@ def solution(s):
 # 재귀함수 사용
 # 네개의 숫자를 비교한 후 전부 같으면 0or 1ㄹ로 변경하면 되는데
 # 숫자를 비교해서 같지 않으면 나눈다.
-# 그리고 해당 함수를 재귀함수로 사용해서 들어오는 배열 수에 맞춰서 반복적으로 나눈다.
+# 그리고 해당 함수를 재귀함수로 사용해서 들어오는 배열 수에 맞춰서 반복.
 
 def solution(arr):
+    n = len(arr)
+
     for i in arr:
         for j in arr[i]:
+        
 
-            number = arr[i][j]
+        # 네개를 찝어서 1의 개수와 0의 개수를 구해서 0이 4거나 1이 4인걸 찾는 함수를 만들어서 재귀함수 써서 안나올 때까지 반복하면 될것 같음
+        # 나누는 함수를 하나 더 써서 반복적으로 나눠주면 될거 같은데
 
-            for x in range(i, i+n):
-                for y in range(j, j+n):
-                    if number != arr[x][y]:
+def division1(s):
+    cnt_one = 0
+    cnt_zero = 0
+
+    for x in range(0, n, 2):
+        for y in range(0, n, 2):
+            sum_square = s[x][y] + s[x][y+1] + s[x+1][j] + s[y+1][j+1] # 네개의 합을 구한다.
+
+            if sum_square == 4: # 모두 1이면 합이 4
+                cnt_one += 1
+            elif sum_square == 0: # 모두 0이면 합이 0
+                cnt_zero += 1
+            else:
+                if s[x][y] == 1:
+                    cnt_one += 1
+                else:
+                    cnt_zero += 1
+    # 뭔가 잘못됨
+    return 
+            
+
+    
 
 
 ```
@@ -54,9 +77,22 @@ def solution(arr):
 ## 3. 스타 수열 (프로그래머스 :  월간 코드 챌린지 시즌 1)
 
 ```python
-# max를 사용해서 가장 빈도가 높은 원소를 뽑아낸다
+# max를 사용해서 가장 빈도가 높은 원소를 뽑아낸다 - 안될거 같음
 # 처음에는 가장 빈도가 높은 수를 뽑아서 최대 원소 수가 나오는 경우만 찾으면 된다고 생각함
-# 문제 이해가 정확하지 않음
+# 일단 가장 빈도가 높은 수를 뽑아야 한다.
+# 숫자별로 딕셔너리에 저장한다.
+
+def solution(a):
+    result = 0
+    num_dict = dict()
+    for n in a:
+        if not num_dict.get(n):
+            num_dict[n] = 1
+        else:
+            num_dict[n] += 1
+            
+    numbers = sorted(num_dict.numbers(), key=lambda x: x[1])
+    # key=lambda x: x[1] 리스트로 변경할 수 있다고 함
 ```
 
 
