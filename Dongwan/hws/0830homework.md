@@ -183,17 +183,19 @@ def solution(prices):
 def solution(n, times):
     l, r = 1, max(times) * n  # l = 가장 작은 값, r = 가장 큰 값
     
-    while l < r:  # 이분 탐색
+    while l <= r:  # 이분 탐색
         m = (l+r) // 2
         s = 0  # 배정 받은 사람의 수
         
         for t in times:  # 시간 반복
-            s += m // t  # 
+            s += m // t  # 입국 심사 시간으로 나눈 몫만큼 배정 받은 사람 수 추가
+            if s >= n:  # 시간 단축을 위해 n보다 크거나 같아지면 정지
+                break
         
-        if s >= n:  # 배정 받은 사람이 더 많거나 같은 경우
-            r = m  # 최대 시간을 시간을 줄여보기
-        else:  # 배정 받은 사람이 더 적은 경우
-            l = m + 1  # 최소 시간을 늘려보기
+        if s >= n:  # 배정 받은 사람이 더 많거나 같은 경우(최대 시간 줄이기)
+            r = m - 1
+        else:  # 배정 받은 사람이 더 적은 경우(최소 시간 늘리기)
+            l = m + 1
     
     return l  # 최소 시간을 반환
 ```
@@ -201,5 +203,26 @@ def solution(n, times):
 ## 6. 징검다리 (프로그래머스 : 코딩테스트 연습 -> 코딩 테스트 고득점 Kit -> 이분 탐색)
 
 ```python
+def solution(distance, rocks, n):
+    rocks.sort()  # 정렬이 필요
+    l, r = 1, distance  # l = 가장 작은 값, r = 가장 큰 값
+    
+    while l <= r:  # 이분 탐색
+        m = (l+r) // 2  # 현재 바위의 거리
+        c, s = 0, 0  # c: 현재 바위 위치, s: 제거한 바위의 수
+        
+        for r in rocks:  # 바위 반복
+            if r - c < m: s += 1  # 만약 바위의 거리의 차가 m보다 작은 경우 제거 +1
+            else: c = r  # m보다 크다면 현재 바위 위치를 갱신
+                
+            if s > n:    # 시간 단축을 위해 n보다 커지면 정지
+                break
+        
+        if s > n:  # 절단 바위의 수가 더 많은 경우(최대 거리 줄이기)
+            r = m - 1
+        else:  # 절단 바위의 수가 더 적은 경우(최소 거리 늘리기)
+            l = m + 1
+            
+    return l - 1  # 최소 거리에서 -1 반환
 ```
 
