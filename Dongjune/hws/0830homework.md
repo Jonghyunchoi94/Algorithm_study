@@ -53,10 +53,10 @@ def solution(priorities, location):
     priorities = deque(priorities)
     printer = []
     wait = []
-    num = priorities[location]
+    num = priorities[location]	# 해당 숫자
 
     while len(priorities) > 0:
-        printer.append(priorities.popleft())
+        printer.append(priorities.popleft())	# [2, 1, 3, 2]
 
         if len(priorities) > 0:
             for i in priorities:
@@ -71,6 +71,9 @@ def solution(priorities, location):
     
     else:
         return len(printer) + wait.index(num) + 1
+    
+    # enumerate
+    # 포인터??? :
 ```
 
 
@@ -80,13 +83,12 @@ def solution(priorities, location):
 ```python
 # 최종 제출이 통과 못함 (시간 많이소요, 나중에... / 다른 풀이는 날라감 / 잘못된 부분 알거 같은데...)
 
-import copy
 from collections import deque
 
 def solution(b_l, w, t_w):
     bridge = [0] * b_l      # 다리를 만들고
     bridge = deque(bridge)
-    t_w_c = copy.copy(t_w)  # while을 위해(비교) 복사
+    t_w_c = t_w.copy()  	# while을 위해(비교) 복사
     stack = []              # 통과친구들 담을거
     cnt = 0                 # 초 계산
     t_w = deque(t_w)        # popleft 쓰고 싶음
@@ -109,6 +111,8 @@ def solution(b_l, w, t_w):
         bridge[-1] = 0                              # 떠난 자리는 0으로
         
     return cnt + 1  # 답이 1모잘라서 1더함
+
+# 구조 먼저 생각해놓고 들어가는게 좋을수도!
 ```
 
 
@@ -157,7 +161,7 @@ from itertools import permutations
 def solution(n, times):
     my_list = []
     my_val = []
-    min_value = 10e23
+    min_value = 1e23 # 1e9(10 ** 9)
 
     for i in range(n+1):
         my_list.append(i)
@@ -176,6 +180,7 @@ def solution(n, times):
             min_value = max(my_result)
     
     return min_value
+# 이분탐색 가능하다!
 ```
 
 
