@@ -88,7 +88,7 @@ for case in range(T):
 move = [1, 1, 3]
 
 def dfs(month, money):
-    global ans, money_day
+    global ans
     if money >= ans:
         return
 
@@ -109,7 +109,6 @@ for case in range(T):
     data = list(map(int, input().split()))
 
     ans = 987654321
-    money_day = 0
     dfs(0, 0)
     print('#{} {}'.format(case + 1, min(year, ans)))
 ```
@@ -176,8 +175,7 @@ for case in range(T):
 
 ```python
 def pos(array1, array2):
-    global honey
-    global answer
+    global honey, answer
     answer = []
     dfs(0, 0, 0, array1)
     max_array1 = max(answer)
